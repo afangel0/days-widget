@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Days of the Week Widget</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 20px;
+      background-color: #fff0f6; /* Light pink background */
+      color: #333; /* Dark text for readability */
+    }
+    .days-container {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin: 20px 0;
+    }
+    .day-box {
+      padding: 10px 15px;
+      border: 1px solid #ffb3c1; /* Pink border */
+      border-radius: 5px;
+      background-color: #ffe6eb; /* Soft pink background */
+      transition: background-color 0.3s, color 0.3s;
+      font-size: 1.2em;
+    }
+    .day-box.highlight {
+      background-color: #ff69b4; /* Bright pink for highlight */
+      color: white; /* White text for highlighted day */
+      font-weight: bold;
+    }
+    .date-display {
+      font-size: 1.5em;
+      margin-top: 20px;
+      color: #ff69b4; /* Bright pink for the date text */
+    }
+  </style>
+</head>
+<body>
+  <h1>Days of the Week</h1>
+  <div class="days-container">
+    <div class="day-box" id="sunday">Sunday</div>
+    <div class="day-box" id="monday">Monday</div>
+    <div class="day-box" id="tuesday">Tuesday</div>
+    <div class="day-box" id="wednesday">Wednesday</div>
+    <div class="day-box" id="thursday">Thursday</div>
+    <div class="day-box" id="friday">Friday</div>
+    <div class="day-box" id="saturday">Saturday</div>
+  </div>
+  <div class="date-display" id="current-date"></div>
+
+  <script>
+    // Adjust to Bangkok time and highlight the current day
+    const days = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', timeZone: 'Asia/Bangkok' };
+    
+    // Get the current Bangkok date and time
+    const bangkokDate = new Date().toLocaleString('en-US', { timeZone: 'Asia/Bangkok' });
+    const date = new Date(bangkokDate);
+    const currentDay = date.getDay();
+    
+    // Highlight the current day
+    const todayElement = document.getElementById(days[currentDay]);
+    if (todayElement) {
+      todayElement.classList.add('highlight');
+    }
+
+    // Display the full date
+    document.getElementById("current-date").textContent = date.toLocaleDateString('en-US', options);
+  </script>
+</body>
+</html>
